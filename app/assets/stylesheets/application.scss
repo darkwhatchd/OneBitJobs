@@ -1,6 +1,7 @@
 @import 'custom';
 @import 'bootstrap/scss/bootstrap';
 @import 'login';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
 
 .btn-site-light, .btn-site-light:hover {
   color: $site-red;
@@ -18,4 +19,8 @@ h1.impact-text {
 
 .bg-site-red {
   background-color: $site-red;
+}
+
+.th-text-color {
+  color: #4f4f4f
 }
