@@ -1,4 +1,5 @@
 class ApplicantsController < ApplicationController
+  skip_before_action :authenticate_company!, only: :create
   before_action :set_applicant, only: %i[ show edit update destroy ]
 
   # GET /applicants or /applicants.json
@@ -25,9 +26,10 @@ class ApplicantsController < ApplicationController
 
     respond_to do |format|
       if @applicant.save
-        format.html { redirect_to @applicant, notice: "Applicant was successfully created." }
+        format.html { redirect_to '/vacancies/all', notice: "Você se candidatou à vaga!" }
         format.json { render :show, status: :created, location: @applicant }
       else
+        @vacancy = Vacancy.find(@applicant.vacancy_id)
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @applicant.errors, status: :unprocessable_entity }
       end
@@ -64,6 +66,6 @@ class ApplicantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def applicant_params
-      params.require(:applicant).permit(:name, :vacancy_id)
+      params.require(:applicant).permit(:name, :vacancy_id, :curriculum)
     end
 end
