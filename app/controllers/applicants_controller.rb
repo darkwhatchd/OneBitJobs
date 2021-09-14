@@ -8,7 +8,9 @@ class ApplicantsController < ApplicationController
     @applicants = Applicant.joins(:vacancy).where(
       vacancy_id: params[:vacancy_id],
       vacancy: { company_id: current_company.id }
-    )
+    ).order(
+      created_at: :asc
+    ).page(params[:page]).per(10)
   end
 
   # GET /applicants/1 or /applicants/1.json
@@ -70,6 +72,6 @@ class ApplicantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def applicant_params
-      params.require(:applicant).permit(:name, :vacancy_id, :curriculum)
+      params.require(:applicant).permit(:name, :vacancy_id, :curriculum, :email)
     end
 end
