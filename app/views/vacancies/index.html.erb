@@ -21,7 +21,7 @@
             <%= link_to edit_vacancy_path(vacancy), class: "text-secondary text-decoration-none", style: 'margin-right: 5px' do %>
               <i class="far fa-edit"></i>Editar
             <% end %>
-            <a href='/applicants' class="text-secondary text-decoration-none" aria-label="Left Align">
+            <a href="/vacancies/<%= vacancy.id %>/applicants" class="text-secondary text-decoration-none" aria-label="Left Align">
               <i class="far fa-user"></i>Candidatos
             </a>
           </td>
